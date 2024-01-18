@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template for displaying the footer
  *
@@ -11,20 +12,31 @@
 
 ?>
 
-	<footer id="colophon" class="site-footer">
-		<div class="footer-contact">
-			
-		</div><!-- .footer-contact -->
-		<div class="footer-menus">
-				
-		</div><!-- .footer-menus -->
-		<div class="site-info">
-			<?php esc_html_e( 'Created by ', 'fwd' ); ?><a href="<?php echo esc_url( __( 'https://wp.bcitwebdeveloper.ca/', 'fwd' ) ); ?>"><?php esc_html_e( 'Jonathon Leathers', 'fwd' ); ?></a>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
+<footer id="colophon" class="site-footer">
+	<div class="footer-contact">
+
+	</div><!-- .footer-contact -->
+	<div class="footer-menus">
+
+		<nav class="footer-navigation">
+			<?php
+			wp_nav_menu(
+				array(
+					'theme_location' => 'footer-left',
+				)
+			);
+			?>
+		</nav>
+
+	</div><!-- .footer-menus -->
+	<div class="site-info">
+		<?php esc_html_e('Created by ', 'fwd'); ?><a href="<?php echo esc_url(__('https://wp.bcitwebdeveloper.ca/', 'fwd')); ?>"><?php esc_html_e('Jonathon S', 'fwd'); ?></a>
+	</div><!-- .site-info -->
+</footer><!-- #colophon -->
 </div><!-- #page -->
 
 <?php wp_footer(); ?>
 
 </body>
+
 </html>

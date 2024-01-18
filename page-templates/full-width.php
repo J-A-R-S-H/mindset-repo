@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template Name: Full Width, No Sidebar
  * 
@@ -9,23 +10,23 @@
 
 get_header(); ?>
 
-	<main id="primary" class="site-main">
+<main id="primary" class="site-main">
 
-		<?php
-		while ( have_posts() ) :
-			the_post();
+	<?php
+	while (have_posts()) :
+		the_post();
 
-			get_template_part( 'template-parts/content', 'page' );
-			
-			// If comments are open or we have at least one comment, load up the comment template.
-			if ( comments_open() || get_comments_number() ) :
-				comments_template();
-			endif;
+		get_template_part('template-parts/content', 'page');
 
-		endwhile; // End of the loop.
-		?>
+		// If comments are open or we have at least one comment, load up the comment template.
+		if (comments_open() || get_comments_number()) :
+			comments_template();
+		endif;
 
-	</main><!-- #primary -->
+	endwhile; // End of the loop.
+	?>
 
-<?php 
+</main><!-- #primary -->
+
+<?php
 get_footer();
