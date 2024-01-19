@@ -27,10 +27,21 @@
 			);
 			?>
 		</nav>
+		<nav class="footer-navigation">
+			<?php
+			wp_nav_menu(
+				array(
+					'theme_location' => 'footer-right',
+				)
+			);
+			?>
+		</nav>
+
+
 
 	</div><!-- .footer-menus -->
 	<div class="site-info">
-		<?php esc_html_e('Created by ', 'fwd'); ?><a href="<?php echo esc_url(__('https://wp.bcitwebdeveloper.ca/', 'fwd')); ?>"><?php esc_html_e('Jonathon S', 'fwd'); ?></a>
+		<?php esc_html_e('Created by ', 'fwd'); ?><a href="<?php echo esc_url(__('https://wp.bcitwebdeveloper.ca/', 'fwd')); ?>"><?php esc_html_e('Johnathon S', 'fwd'); ?></a>
 	</div><!-- .site-info -->
 </footer><!-- #colophon -->
 </div><!-- #page -->

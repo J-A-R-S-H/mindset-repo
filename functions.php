@@ -53,6 +53,8 @@ function fwd_setup()
 		array(
 			'header' => esc_html__('Header Menu Location', 'fwd'),
 			'footer-left' => esc_html__('Footer - Left Side', 'fwd'),
+			'footer-right' => esc_html__('Footer - Right Side', 'fwd'),
+
 		)
 	);
 
@@ -150,8 +152,19 @@ function fwd_widgets_init()
 			'after_title'   => '</h2>',
 		)
 	);
+	register_sidebar(
+		array(
+			'name'          => __('Secondary Sidebar', 'fwd'),
+			'id'            => 'sidebar-2',
+			'before_widget' => '<ul><li id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</li></ul>',
+			'before_title'  => '<h3 class="widget-title">',
+			'after_title'   => '</h3>',
+		)
+	);
 }
 add_action('widgets_init', 'fwd_widgets_init');
+
 
 /**
  * Enqueue scripts and styles.
