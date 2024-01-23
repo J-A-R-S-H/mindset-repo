@@ -48,6 +48,11 @@ function fwd_setup()
 		*/
 	add_theme_support('post-thumbnails');
 
+	add_image_size("portrait-blog", 200, 250, true);
+
+	add_image_size("landscape-blog-featured", 400, 200, true);
+
+
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
@@ -156,10 +161,10 @@ function fwd_widgets_init()
 		array(
 			'name'          => __('Secondary Sidebar', 'fwd'),
 			'id'            => 'sidebar-2',
-			'before_widget' => '<ul><li id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</li></ul>',
-			'before_title'  => '<h3 class="widget-title">',
-			'after_title'   => '</h3>',
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
 		)
 	);
 }
