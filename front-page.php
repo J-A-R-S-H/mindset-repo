@@ -26,16 +26,91 @@ get_header();
 	?>
 		<section class="home-intro">
 
-			<?php the_post_thumbnail("large")  ?>
+			<?php the_post_thumbnail("large");
+
+			if (function_exists('get_field')) {
+				if (get_field('top_section')) {
+					the_field('top_section');
+				}
+			}
+
+			?>
+
+		</section>
+
+		<section class="home-work">
+			<h2>Featured Works</h2>
+			<?php
+			$args = array(
+				'post_type'      => 'fwd-work',
+				'posts_per_page' => 4,
+			);
+			$query = new WP_Query($args);
+
+			if ($query->have_posts()) {
+				while ($query->have_posts()) {
+					$query->the_post();
+			?>
+					<article>
+						<a href="<?php the_permalink(); ?>">
+							<h3><?php the_title(); ?></h3>
+							<?php the_post_thumbnail('medium'); ?>
+						</a>
+						<?php the_excerpt(); ?>
+					</article>
+			<?php
+				}
+			}
+			?>
 		</section>
 
 		<section class="home-work"></section>
 
-		<section class="home-work"></section>
+		<section class="home-left">
 
-		<section class="home-left"></section>
+			<?php
+			if (function_exists('get_field')) {
 
-		<section class="home-right"></section>
+				if (get_field('left_section_title')) {
+					echo '<h2>';
+					the_field('left_section_title');
+					echo '</h2>';
+				}
+
+				if (get_field('left_section_text')) {
+					echo '<p>';
+					the_field('left_section_text');
+					echo '</p>';
+				}
+			}
+
+
+			?>
+
+		</section>
+
+		<section class="home-right">
+
+			<?php
+			if (function_exists('get_field')) {
+
+				if (get_field('right_section_title')) {
+					echo '<h2>';
+					the_field('right_section_title');
+					echo '</h2>';
+				}
+
+				if (get_field('right_section_text')) {
+					echo '<p>';
+					the_field('right_section_text');
+					echo '</p>';
+				}
+			}
+
+
+			?>
+
+		</section>
 
 		<section class="home-slider"></section>
 

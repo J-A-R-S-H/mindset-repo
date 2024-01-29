@@ -14,6 +14,20 @@
 
 <footer id="colophon" class="site-footer">
 	<div class="footer-contact">
+		<?php
+		if (!is_page(6)) {
+			if (function_exists('get_field')) {
+
+				if (get_field('contact_address', 6)) {
+					echo '<p>' . esc_html(get_field('contact_address', 6)) . '</p>';
+				}
+
+				if (get_field('contact_email', 6)) {
+					echo '<p>' . esc_html(get_field('contact_email', 6)) . '</p>';
+				}
+			}
+		}
+		?>
 
 	</div><!-- .footer-contact -->
 	<div class="footer-menus">
@@ -45,6 +59,7 @@
 		the_privacy_policy_link()
 		?>
 		<?php esc_html_e('Created by ', 'fwd'); ?><a href="<?php echo esc_url(__('https://wp.bcitwebdeveloper.ca/', 'fwd')); ?>"><?php esc_html_e('Johnathon S', 'fwd'); ?></a>
+
 	</div><!-- .site-info -->
 </footer><!-- #colophon -->
 </div><!-- #page -->

@@ -202,9 +202,137 @@ require get_template_directory() . '/inc/template-functions.php';
  */
 require get_template_directory() . '/inc/customizer.php';
 
+
+//Custom Post Types and Taxonomies
+
+require get_template_directory() . '/inc/cpt-taxonomy.php';
+
+
+
 /**
  * Load Jetpack compatibility file.
  */
 if (defined('JETPACK__VERSION')) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+
+
+function fwd_theme_color()
+{
+	echo "<meta name='theme-color' content='#fff200'>";
+}
+
+add_action('wp_head', 'fwd_theme_color');
+
+function fwd_excerpt_length($length)
+{
+	return 20;
+}
+
+
+add_filter('excerpt_length', 'fwd_excerpt_length', 999);
+
+function fwd_excerpt_more($more)
+{
+
+	$more = '... <a class="read-more" href="' . esc_url(get_permalink()) . '">Continue Reading</a>';
+	return $more;
+}
+
+
+add_filter("excerpt_more", "fwd_excerpt_more");
+
+
+
+function fwd_block_editor_templates()
+{
+	// Replace '14' with the Page ID
+	if (isset($_GET['post']) && '90' == $_GET['post']) {
+		$post_type_object = get_post_type_object('page');
+		$post_type_object->template = array(
+			// define blocks here...
+			array(
+				'core/paragraph',
+				array(
+					'placeholder' => 'Add your introduction here...'
+				)
+			),
+			array(
+				'core/heading',
+				array(
+					'placeholder' => 'Add your heading here...',
+					'level' => 2
+				)
+			),
+			array(
+				'core/image',
+				array(
+					'align' => 'left',
+					'sizeSlug' => 'medium'
+				)
+			),
+			array(
+				'core/paragraph',
+				array(
+					'placeholder' => 'Add text here...'
+				)
+			),
+
+		);
+		$post_type_object->template_lock = 'all';
+	}
+
+
+	if (isset($_GET['post']) && '6' == $_GET['post']) {
+		$post_type_object = get_post_type_object('page');
+		$post_type_object->template = array(
+			// define blocks here...
+			array(
+				'core/paragraph',
+				array(
+					'placeholder' => 'Add your paragraph here...'
+				)
+			),
+			array(
+				'core/shortcode',
+				array(
+					'placeholder' => 'Add your code here...',
+				)
+			),
+
+		);
+		$post_type_object->template_lock = 'all';
+	}
+}
+add_action('init', 'fwd_block_editor_templates');
+
+
+
+//Remove the Block Editor 
+function fwd_post_filter($use_block_editor, $post)
+{
+	// Change 112 to your Page ID
+	$page_ids = array(117, 14);
+	if (in_array($post->ID, $page_ids)) {
+		return false;
+	} else {
+		return $use_block_editor;
+	}
+}
+add_filter('use_block_editor_for_post', 'fwd_post_filter', 10, 2);
+
+
+//Edit the thingy when your editing it 
+
+function wpb_change_title_text($title)
+{
+	$screen = get_current_screen();
+
+	if ('fwd-work' == $screen->post_type) {
+		$title = 'ENTER SOMETHING HERE OOPS ITS ALL CAPS';
+	}
+
+	return $title;
+}
+
+add_filter('enter_title_here', 'wpb_change_title_text');
