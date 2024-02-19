@@ -19,11 +19,21 @@
 			if (function_exists('get_field')) {
 
 				if (get_field('contact_address', 6)) {
+					echo "<div class='footer-contact-left'>";
+					get_template_part("images/map");
 					echo '<p>' . esc_html(get_field('contact_address', 6)) . '</p>';
+					echo "</div>";
 				}
 
+
 				if (get_field('contact_email', 6)) {
+					echo "<div class='footer-contact-right'>";
+
+					get_template_part("images/email");
+
 					echo '<p>' . esc_html(get_field('contact_email', 6)) . '</p>';
+
+					echo "</div>";
 				}
 			}
 		}
@@ -41,7 +51,7 @@
 			);
 			?>
 		</nav>
-		<nav class="footer-navigation">
+		<nav class="social-navigation">
 			<?php
 			wp_nav_menu(
 				array(
@@ -58,6 +68,7 @@
 		<?php
 		the_privacy_policy_link()
 		?>
+		<br>
 		<?php esc_html_e('Created by ', 'fwd'); ?><a href="<?php echo esc_url(__('https://wp.bcitwebdeveloper.ca/', 'fwd')); ?>"><?php esc_html_e('Johnathon S', 'fwd'); ?></a>
 
 	</div><!-- .site-info -->

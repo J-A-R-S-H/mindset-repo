@@ -406,7 +406,7 @@ select,
 optgroup,
 textarea {
 	color: #404040;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-family: "Open Sans", sans-serif;
 	font-size: 1rem;
 	line-height: 1.5;
 }
@@ -419,6 +419,7 @@ h5,
 h6 {
 	clear: both;
 	margin: .75em 0 .25em;
+	font-family: 'Roboto', sans-serif;
 }
 
 h1 {
@@ -721,7 +722,12 @@ svg path {
 	}
 
 	.no-sidebar .site,
-	.page-template-full-width .site {
+	.page-template-full-width .site, 
+	.page-id-14 .site,
+	.page-id-183 .site,
+	.page-id-8 .site,
+	.post-type-archive-fwd-work .site, 
+	.page-id-195 .site{
 		grid-template-columns: 1fr minmax(0, 1000px) 1fr;
 		grid-template-areas:
 			"header header header"
@@ -859,7 +865,24 @@ svg path {
 	color: #fff;
 }
 
+.service-links {
+	border: double 6px yellow;
+	padding:2rem;
+	margin: 0.5rem;
+text-align: center;
+}
+.service-links a {
+	padding: 1rem;
+	display: block;
+}
+
+
 @media screen and (min-width: 50em) {
+	.service-links {
+		display: flex;
+		justify-content: space-between;
+	}
+
 	.menu-toggle {
 		display: none;
 	}
@@ -979,6 +1002,105 @@ svg path {
 	grid-gap: 2em;
 }
 
+
+
+/* Home Page */
+
+
+.page-id-195 article {
+	text-align: center;
+}
+
+.swiper-slide .wp-block-quite {
+	margin-bottom: 1.5rem;
+}
+
+.swiper .swiper-pagination{
+	position: relative;
+}
+
+.swiper-wrapper {
+	height: 220px;
+}
+.swiper-pagination .swiper-pagination-bullet-active {
+	background-color: yellow;
+
+}
+.swiper-pagination .swiper-pagination-bullet {
+	width: 2rem;
+	height: 2rem;
+}
+
+@media screen and (min-width: 50em){
+
+
+	.home-work {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr ;
+
+	}
+	.home-work h2 {
+		grid-column: span 4;
+	}
+
+	
+
+.home-left {
+	display: inline-block;
+    width: 45%;
+}
+.home-right {
+	display: inline-block;
+    width: 45%;
+	margin-left: 2rem;
+}
+
+.home-blog {
+	display: flex;
+flex-wrap: wrap;
+column-gap: 1rem;
+}
+
+.home-blog h2 {
+	width: 100%;
+}
+.home-blog article {
+	max-width: 28.125rem;
+}
+
+}
+
+
+/* About Page */
+
+
+.page-id-8 blockquote {	
+	border-left: none ;
+	padding-left: 0;
+}
+
+/* Work Page */
+
+@media screen and (min-width: 50em){
+
+.post-type-archive-fwd-work .work-section {
+display: flex;
+flex-wrap: wrap;
+}
+
+
+.post-type-archive-fwd-work .work-section h2{
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	}
+
+.post-type-archive-fwd-work .work-section article{
+	width: 33.3%;
+}
+
+}
+
 /* Footer
 --------------------------------------------- */
 .site-footer {
@@ -1036,6 +1158,11 @@ svg path {
 	text-align: center;
 	margin-top: 2rem;
 }
+
+.entry-footer span {
+	margin-right: 0.6rem;
+}
+
 
 @media screen and (min-width: 43.75em) {
 
@@ -1227,6 +1354,19 @@ svg path {
 /*--------------------------------------------------------------
 # Utilities
 --------------------------------------------------------------*/
+
+.scroll-top {
+	background: transparent;
+	border: none;
+	padding: 1rem;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	cursor: pointer;
+	transition: all ease 0.3s;
+	opacity: 0;
+	color: #fff200;
+}
 
 /* Accessibility
 --------------------------------------------- */

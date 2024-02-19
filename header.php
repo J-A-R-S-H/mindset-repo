@@ -30,6 +30,8 @@
 		<header id="masthead" class="site-header">
 			<div class="site-branding">
 				<?php
+				get_template_part("images/scrollBtn");
+
 				the_custom_logo();
 				if (is_front_page() && is_home()) :
 				?>
@@ -62,6 +64,7 @@
 						'menu_id'        => 'header-menu',
 					)
 				);
+
 				?>
 			</nav><!-- #site-navigation -->
 		</header><!-- #masthead -->

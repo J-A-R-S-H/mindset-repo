@@ -41,55 +41,6 @@
 			}
 		}
 
-		$args = array(
-			'post_type'      => 'fwd-service',
-			'posts_per_page' => -1,
-			"order" => "ASC",
-			"orderby" => "title",
-		);
-		$query = new WP_Query($args);
-
-
-		if ($query->have_posts()) {
-			while ($query->have_posts()) {
-				$query->the_post();
-
-				echo "<a href='#" . get_the_ID() . "'>";
-				echo esc_html(get_the_title());
-				echo "</a>";
-			}
-			wp_reset_postdata();
-		}
-
-
-
-
-		$args = array(
-			'post_type'      => 'fwd-service',
-			'posts_per_page' => -1,
-			"order" => "ASC",
-			"orderby" => "title",
-		);
-		$query = new WP_Query($args);
-
-
-		if ($query->have_posts()) {
-			while ($query->have_posts()) {
-				$query->the_post();
-
-
-				if (function_exists('get_field')) {
-					if (get_field('service_post')) {
-						echo "<h2 id='" . get_the_ID()  . "'>" . esc_html(get_the_title()) . "</h2>";
-						echo '<p>' . esc_html(get_field('service_post')) . '</p>';
-					}
-				}
-			}
-			wp_reset_postdata();
-		}
-
-
-
 
 		?>
 	</div><!-- .entry-content -->

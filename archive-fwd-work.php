@@ -37,7 +37,7 @@ get_header();
 	$query = new WP_Query($args);
 
 	if ($query->have_posts()) : ?>
-		<section>
+		<section class="work-section">
 			<h2><?php esc_html_e('Web', 'fwd'); ?></h2>
 			<?php
 			while ($query->have_posts()) :
@@ -49,7 +49,9 @@ get_header();
 						the_post_thumbnail('large');
 						?>
 					</a>
-					</php the_excerpt(); ?>
+					<?php
+					the_excerpt();
+					?>
 				</article>
 			<?php
 			endwhile;
@@ -77,7 +79,7 @@ get_header();
 	$query = new WP_Query($args);
 
 	if ($query->have_posts()) : ?>
-		<section>
+		<section class="work-section">
 			<h2><?php esc_html_e('Photo', 'fwd'); ?></h2>
 			<?php
 			while ($query->have_posts()) :
@@ -107,5 +109,4 @@ get_header();
 </main><!-- #primary -->
 
 <?php
-get_sidebar();
 get_footer();

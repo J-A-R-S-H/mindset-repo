@@ -21,9 +21,11 @@ get_header();
 	<?php
 	while (have_posts()) :
 		the_post();
-
-		// get_template_part('template-parts/content', 'page');
 	?>
+		<h1><?php
+			the_title();
+			?></h1>
+
 		<section class="home-intro">
 
 			<?php the_post_thumbnail("large");
@@ -44,6 +46,13 @@ get_header();
 			$args = array(
 				'post_type'      => 'fwd-work',
 				'posts_per_page' => 4,
+				'tax_query'      => array(
+					array(
+						'taxonomy' => 'fwd-featured',
+						'field'    => 'slug',
+						'terms'    => 'front-page'
+					),
+				),
 			);
 			$query = new WP_Query($args);
 
@@ -56,21 +65,21 @@ get_header();
 							<h3><?php the_title(); ?></h3>
 							<?php the_post_thumbnail('medium'); ?>
 						</a>
-						<?php the_excerpt(); ?>
 					</article>
 			<?php
 				}
+				wp_reset_postdata();
 			}
 			?>
 		</section>
 
-		<section class="home-work"></section>
 
 		<section class="home-left">
 
 			<?php
-			if (function_exists('get_field')) {
 
+
+			if (function_exists('get_field')) {
 				if (get_field('left_section_title')) {
 					echo '<h2>';
 					the_field('left_section_title');
@@ -85,6 +94,7 @@ get_header();
 			}
 
 
+
 			?>
 
 		</section>
@@ -93,7 +103,6 @@ get_header();
 
 			<?php
 			if (function_exists('get_field')) {
-
 				if (get_field('right_section_title')) {
 					echo '<h2>';
 					the_field('right_section_title');
@@ -112,52 +121,85 @@ get_header();
 
 		</section>
 
-		<section class="home-slider"></section>
+		<section class="home-slider">
 
-		<section class="home-blog"></section>
-		<h2><?php esc_html_e("Latest Blog Posts", "fwd") ?></h2>
-		<?php
+			<h2>Testimonials</h2>
+			<?php
+			$args = array(
+				'post_type'      => 'fwd-testimonial',
+				'posts_per_page' => -1
+			);
 
-		$args = array(
-			"post_type" => "post",
-			"posts_per_page" => 4
-		);
-		$blog_query = new WP_Query($args);
-		if ($blog_query->have_posts()) {
-			while ($blog_query->have_posts()) {
-				$blog_query->the_post();
-		?>
+			$query = new WP_Query($args);
 
-				<article>
-					<a class="post-thumbnail" href="<?php the_permalink(); ?>">
-						<?php
-						the_post_thumbnail("landscape-blog-featured")
+			if ($query->have_posts()) : ?>
+				<div class="swiper">
+					<div class="swiper-wrapper">
+						<?php while ($query->have_posts()) : $query->the_post(); ?>
+							<div class="swiper-slide">
+								<?php the_content(); ?>
+							</div>
+						<?php endwhile;
+						wp_reset_postdata()
 						?>
-					</a>
+					</div>
+					<div class="swiper-pagination"></div>
+				</div>
+			<?php
+			endif;
+			?>
+		</section>
 
-					<a href="<?php the_permalink(); ?>">
-						<h3><?php the_title() ?></h3>
-					</a>
-					<?php
-					fwd_posted_on()
-					?>
 
 
-				</article>
-		<?php
+
+		<section class="home-blog">
+
+
+			<h2><?php esc_html_e("Latest Blog Posts", "fwd") ?></h2>
+			<?php
+
+			$args = array(
+				"post_type" => "post",
+				"posts_per_page" => 4
+			);
+			$blog_query = new WP_Query($args);
+			if ($blog_query->have_posts()) {
+				while ($blog_query->have_posts()) {
+					$blog_query->the_post();
+			?>
+
+					<article>
+						<a class="post-thumbnail" href="<?php the_permalink(); ?>">
+							<?php
+							the_post_thumbnail("landscape-blog-featured")
+							?>
+						</a>
+
+						<a href="<?php the_permalink(); ?>">
+							<h3><?php the_title() ?></h3>
+						</a>
+						<?php
+						fwd_posted_on()
+						?>
+
+
+					</article>
+			<?php
+				}
 			}
-		}
 
+			?>
+
+
+		<?php
+	endwhile; // End of the loop.
 		?>
 
+		</section>
 
-	<?php
-
-	endwhile; // End of the loop.
-	?>
 
 </main><!-- #primary -->
 
 <?php
-get_sidebar();
 get_footer();
