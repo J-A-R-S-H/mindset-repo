@@ -8,7 +8,7 @@ $args = array(
 $query = new WP_Query($args);
 
 if ($query->have_posts()) {
-    echo "<setcion>";
+    echo "<section>";
     while ($query->have_posts()) {
         $query->the_post();
         the_content();
